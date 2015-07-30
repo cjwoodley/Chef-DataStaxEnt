@@ -1,0 +1,87 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+
+platforms:
+#  - name: ubuntu-12.04
+#  - name: centos-6.4
+  - name: centos-6.5
+    driver:
+      box: chef/centos-6.5
+
+suites:
+  - name: DSE00
+    driver:
+      vm_hostname: dse00.local.com
+      network:
+      - ["private_network",{ip: "192.168.56.120"}]
+      customize:
+        memory: 2048
+        cpus: 2
+      #synced_folders: 
+      #  - ["c:\\opt\\dse\\", "sources"]
+    run_list:
+      - recipe[dse::systemconf]
+      - recipe[dse::default]
+
+  - name: DSE01
+    driver:
+      vm_hostname: dse01.local.com
+      network:
+      - ["private_network",{ip: "192.168.56.121"}]
+      customize:
+        memory: 2048
+        cpus: 2
+        #synced_folders: 
+        #  - ["c:\\opt\\dse\\", "sources"]
+    run_list:
+      - recipe[dse::systemconf]
+      - recipe[dse::default]
+    attributes:
+
+  - name: DSE02
+    driver:
+      vm_hostname: dse02.local.com
+      network:
+      - ["private_network",{ip: "192.168.56.122"}]
+      customize:
+        memory: 2048
+        cpus: 2
+        #synced_folders: 
+        #  - ["c:\\opt\\dse\\", "sources"]
+    run_list:
+      - recipe[dse::systemconf]
+      - recipe[dse::default]
+    attributes:
+
+  - name: DSE03
+    driver:
+      vm_hostname: dse03.local.com
+      network:
+      - ["private_network",{ip: "192.168.56.123"}]
+      customize:
+        memory: 2048
+        cpus: 2
+        #synced_folders: 
+        #  - ["c:\\opt\\dse\\", "sources"]
+    run_list:
+      - recipe[dse::systemconf]
+      - recipe[dse::default]
+
+  - name: DSE04
+    driver:
+      vm_hostname: dse04.local.com
+      network:
+      - ["private_network",{ip: "192.168.56.124"}]
+      customize:
+        memory: 2048
+        cpus: 2
+        #synced_folders: 
+        #  - ["c:\\opt\\dse\\", "sources"]
+    run_list:
+      - recipe[dse::systemconf]
+      - recipe[dse::default]
+    attributes:
